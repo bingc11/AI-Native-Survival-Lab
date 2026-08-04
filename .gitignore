@@ -1,0 +1,36 @@
+# Unity
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+
+# Visual Studio / Visual Studio Code
+/[Vv][Ss]/
+/.vs/
+/.vscode/
+
+# Rider
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+*.orig
+
+# Large / sensitive artifacts
+*.log
+*.apk
+*.aab
+*.unitypackage
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+# AI experiment artifacts (keep scripts, skip heavy outputs)
+/artifacts/
+/models/
