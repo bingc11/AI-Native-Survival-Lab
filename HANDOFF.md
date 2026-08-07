@@ -1,47 +1,38 @@
 # HANDOFF.md
-用于新主控会话接续。最新更新：2026-08-04
+用于新主控会话接续。最新更新：2026-08-07
 
 ## 当前目标
-- 建立最小工作台文件并提交。
-- 验证 LLMUnity 代码能被正确读取和理解。
+- TASK-0001（LLMUnity SCOUT）已完成，等待用户阅读确认。
 
 ## 已完成
-- 已将仓库克隆到本地
-- 仓库最初只有 README.md（单行）
-- 初始化工作台结构和状态文件
-- 已创建 STATUS、ROADMAP、HANDOFF、DECISIONS、SOURCE_INDEX、PROTOTYPE_INDEX、TASK-0001
-- 已提交并推送 6513572 docs: add agent protocol, CLAUDE, templates
-- 已创建 docs/source-studies/llmunity/README.md 骨架
-- 已创建任务模板 SCOUT.md / BUILDER.md / REVIEW.md
+- 工作台同步：commit 63afeb3 已 push 至 origin/main。
+- LLMUnity 已 clone 到 E:\references\LLMUnity（undreamai/LLMUnity，commit 2c30b44，v3.0.3，Apache-2.0）。
+  - 注意：简报中的 ilciro/LLMUnity URL 已 404，官方仓库迁移为 undreamai/LLMUnity。
+- 已产出 docs/source-studies/llmunity/：
+  - READING_GUIDE.md（3 条调用链、6 个扩展点、可跳过目录、P00 接口契约建议）
+  - SOURCE_CARD.md（commit/license/运行环境/复用判断）
+  - MY_NOTES.md（空白占位，留给用户）
+- SOURCE_INDEX.md / STATUS.md 已同步更新。
 
 ## 未完成
-- LLMUnity 审计尚未开始（等待用户确认 local path 或继续按默认 ../references/LLMUnity 推进）
-- 第三方仓库尚未实际 clone 到 references/ 目录
-- TASK-0001 READING_GUIDE.md / SOURCE_CARD.md / MY_NOTES.md 尚未生成
+- 用户尚未阅读 READING_GUIDE 并确认（阶段暂停点）。
+- P00 实现未开始（按任务规则不得提前进入实现阶段）。
 
 ## 工作区和分支状态
-- 处于 E:\Unity-AIProjects
-- 在 `main` 分支
-- 与 origin/main 同步（最新 6513572）
+- E:\Unity-AIProjects，main 分支，与 origin/main 同步。
+- git 直连 GitHub 不可达：push/clone 需 `git -c http.proxy=http://127.0.0.1:7897 ...`（未写入持久配置）。
 
 ## 测试状态
-- 无
+- 无（本阶段只读侦察）。
 
 ## 已知问题
-- references/ 目录是否已存在 LLMUnity 本地 checkout 尚不确认
-- 尚未建立 Unity 工程（Phase A 不包含）
+- Git Credential Manager 曾报"页文件太小"崩溃；走代理后 push 正常，可能与页文件配置有关，如再遇可留意。
+- native llama 库为预编译 DLL（Resources/），JSON schema→GBNF 转换在原生层，仓库内不可见。
 
 ## 不应重复的调查
-- 不再制作空文档
-- 不再重复创建基础工作台文件
+- 不再重新 clone LLMUnity（已存在）。
+- 不重复读整个 LLMUnity 仓库，只按 READING_GUIDE 走关键调用链。
 
 ## 下一步第一项动作
-1. 确认 ../references/LLMUnity 是否存在：
-```powershell
-Test-Path ..\references\LLMUnity
-```
-2. 若不存在，执行：
-```powershell
-cd .. ; mkdir references ; cd references ; git clone https://github.com/ilciro/LLMUnity.git
-```
-3. 完成后继续 TASK-0001 SCOUT。
+1. 请用户阅读 docs/source-studies/llmunity/READING_GUIDE.md（重点：第 6 节 7 个问题）。
+2. 用户确认后由主控台决定：TASK-0001 关闭 + 是否启动 P00 BUILDER。
