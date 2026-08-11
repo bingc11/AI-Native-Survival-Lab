@@ -1,6 +1,12 @@
 # TASK-0001
 审计 LLMUnity，为结构化输出调用链制作阅读路线。
 
+## 状态
+✅ 已完成（2026-08-07，用户已阅读确认）
+- 产物：docs/source-studies/llmunity/{READING_GUIDE,SOURCE_CARD,MY_NOTES}.md
+- 审计对象：undreamai/LLMUnity commit 2c30b44 / v3.0.3（Apache-2.0）
+- 更正：原记录 URL ilciro/LLMUnity 已 404，官方仓库为 undreamai/LLMUnity
+
 ## 任务编号
 TASK-0001
 
