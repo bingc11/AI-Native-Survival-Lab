@@ -34,3 +34,7 @@ Thumbs.db
 # AI experiment artifacts (keep scripts, skip heavy outputs)
 /artifacts/
 /models/
+
+# .NET build output
+bin/
+obj/
