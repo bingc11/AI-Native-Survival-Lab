@@ -79,7 +79,7 @@ namespace P01.Core
                     && doc.RootElement.TryGetProperty("event", out JsonElement ev)
                     && ev.ValueKind == JsonValueKind.String)
                 {
-                    string id = ev.GetString();
+                    string? id = ev.GetString();
                     return string.IsNullOrWhiteSpace(id) ? null : id;
                 }
                 return null;
