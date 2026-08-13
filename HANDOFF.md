@@ -1,8 +1,8 @@
 # HANDOFF.md
-用于新主控会话接续。最新更新：2026-08-07
+用于新主控会话接续。最新更新：2026-08-13
 
 ## 当前目标
-- TASK-0002（P00 Provider Probe）实现完成，等主控台 REVIEW。
+- P01 Event Director（AI 事件导演）教学与实现：事件表 + IEventDirector 接口 + 三种 Director（策略模式）+ 确定性边界。P00 学习已完成并归档笔记至 Notion（8.13-P00接口）。
 
 ## 已完成
 - TASK-0001（LLMUnity SCOUT）归档 tasks/completed/（commit 8278b9a）。
@@ -23,7 +23,13 @@
 - 环境：dotnet 10.0.200 可用；无 Unity 编辑器。
 
 ## 测试状态
-- `dotnet test prototypes/P00_ProviderProbe/P00.slnx` → 12/12 通过，零警告。
+- P00：`dotnet test prototypes/P00_ProviderProbe/P00.slnx` → 13/13 通过（含 null 值检查练习）。
+- P01：进行中，骨架与事件表测试待落盘。
+
+## 后续可延展方向（学习路线备忘，2026-08-13 记录）
+AI 原生游戏六大架构主题：①通信层（P00✅）②决策层（P01 进行中）③记忆层（记忆流/反思/检索）④动作层（工具调用/技能库）⑤知识层（RAG）⑥人格层（角色一致性）。
+真实案例参考：Generative Agents（斯坦福，NPC 感知→记忆→反思→规划循环）、AI Dungeon（LLM 当 DM/世界模拟器）、Voyager（LLM 规划 + 代码技能库）、Inworld/Convai（SDK + 云端 NPC 大脑）。
+共性骨架：大脑(LLM)→记忆/状态→工具/动作→控制/校验（P00/P01 学的正是控制与决策格）。候选源码：Voyager、Chop-Chop（Phase A 待审计）。
 
 ## 已知问题
 - 勿用 PowerShell 的 Set-Content/Get-Content 改写带中文的源文件（会破坏 UTF-8 编码），用编辑器工具。
