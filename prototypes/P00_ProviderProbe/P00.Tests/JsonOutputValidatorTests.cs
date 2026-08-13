@@ -123,4 +123,15 @@ public class JsonOutputValidatorTests
         await Assert.ThrowsAnyAsync<OperationCanceledException>(
             () => validator.CompleteAsync("query", cts.Token));
     }
+
+    [Fact]
+    public async Task NullFieldValue_IsRejected()
+    {
+        var inner = new ScriptedProvider("{\"intent\":null,\"target\":\"forest\"}"); // 带 null 字段的输出
+        var validator = Create(inner, maxRetries: 0);                                // 不重试，直接兜底
+
+        string result = await validator.CompleteAsync("query", CancellationToken.None);
+
+        Assert.True(validator.TryValidate(result, out string? error), error); // 兜底必须仍然合格
+    }
 }

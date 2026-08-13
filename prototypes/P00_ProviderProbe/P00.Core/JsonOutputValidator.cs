@@ -71,9 +71,15 @@ namespace P00.Core
 
                 foreach (string field in _requiredFields)
                 {
-                    if (!root.TryGetProperty(field, out _))
+                    if (!root.TryGetProperty(field, out JsonElement value))
                     {
                         error = $"missing required field: '{field}'";
+                        return false;
+                    }
+
+                    if (value.ValueKind == JsonValueKind.Null)
+                    {
+                        error = $"required field '{field}' cannot be null";
                         return false;
                     }
                 }
