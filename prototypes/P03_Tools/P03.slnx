@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="P03.Core/P03.Core.csproj" />
+  <Project Path="P03.Simulation/P03.Simulation.csproj" />
+  <Project Path="P03.Tests/P03.Tests.csproj" />
+</Solution>
