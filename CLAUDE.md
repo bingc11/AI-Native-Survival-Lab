@@ -31,6 +31,7 @@
 - 不提交第三方完整源码
 - 每个 AI 方案保留确定性执行边界
 - 每个实验必须有非 AI 基线
+- **留档纪律：每完成一个小阶段（一个原型 / 重大设计决策 / 教学里程碑），立即更新 HANDOFF.md、STATUS.md、PROTOTYPE_INDEX.md、DECISIONS.md，确保新 Agent 会话无缝接续。**
 
 ## 任务模式
 SCOUT / BUILDER / REVIEW

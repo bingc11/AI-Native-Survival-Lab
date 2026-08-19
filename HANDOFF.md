@@ -2,44 +2,49 @@
 用于新主控会话接续。最新更新：2026-08-13
 
 ## 当前目标
-- P01 Event Director（AI 事件导演）教学与实现：事件表 + IEventDirector 接口 + 三种 Director（策略模式）+ 确定性边界。P00 学习已完成并归档笔记至 Notion（8.13-P00接口）。
+P04 World Simulation Core（Headless 生存模拟）——已落第一版骨架（WorldState/Clock/Command/Event/SurvivalSystem，7 测试绿，commit 925bd0c），正在按新思路检查修改，然后带用户逐文件学习。
 
-## 已完成
-- TASK-0001（LLMUnity SCOUT）归档 tasks/completed/（commit 8278b9a）。
-- TASK-0002 实现（commit 4bb6c20）：prototypes/P00_ProviderProbe/
-  - P00.Core：IGameAIProvider、StubProvider（非 AI 基线）、JsonOutputValidator（校验/重试/兜底）
-  - P00.Tests：12 个测试全绿（确定性 / schema 校验 / 重试 / 兜底自洽 / 取消传播 / 不阻塞）
-  - UnityAdapter/LLMUnityAdapter.cs：代码形态（不编译），按 READING_GUIDE 契约包装 LLMAgent.Chat
-  - 依赖：P00.Core netstandard2.1（可被 Unity 引用）+ System.Text.Json 8.0.5；Tests net10.0 + xunit
+## 已完成（截至当前）
+- P00 通信层（13 测试绿）/ P01 决策层（28 绿）/ P02 记忆层（10 绿）/ P03 动作层（8 绿）
+- 四原型笔记已进 Notion：Long term Goals → 1.LLMUnity → 8.13-P00接口 / 8.13-P01事件导演 / 8.13-P02记忆 / 8.13-P03动作层
+- P04 第一版骨架：prototypes/P04_Survival/（WorldState 5 子对象 + SimulationClock(Interval/Phase) + ISystem + Command/CommandValidator + EventBus/WorldEvent + SurvivalSystem + HeadlessRunner，7 测试绿，commit 925bd0c）
 
-## 未完成
-- 主控台 REVIEW（TASK-0002 暂停点）。
-- Unity 工程内实际加载模型验证（需 Unity 编辑器）。
+## 项目总目标（2026-08-13 调整，详见 ROADMAP.md）
+以一个未来能迁入 Unity 3D 生存游戏的 Headless Gameplay Simulation 为主干，在真实游戏问题中融合传统 Game AI、LLM Agent 与 AI-native gameplay。
+- **不再横向补 LLM Agent 技能**（RAG/Context/Prompt 逐个补），改为以游戏模拟为核心
+- 路线：P04 World Sim → P05 GOAP+Multi-Agent → P06 Perception/Belief+FSM/BT/GOAP → P07 Semantic Interaction → P08 Social Memory → P09 RAG（按需）
 
-## 工作区和分支状态
-- E:\Unity-AIProjects，main 分支，与 origin/main 同步（4bb6c20）。
-- git 直连 GitHub 不可达：push/clone 需 `git -c http.proxy=http://127.0.0.1:7897 ...`。
-- NuGet 直连也有 SSL 抖动：dotnet restore/test 前设 `$env:HTTPS_PROXY` 更稳。
-- 环境：dotnet 10.0.200 可用；无 Unity 编辑器。
+## Unity 节奏（重要）
+- 不是 P04-P09 全做完才进 Unity
+- 顺序：纯 C# 做到 P04-P06 基本闭环 → **先学 Oddssey 补 Unity 引擎基础** → **单开 Unity 项目搭基本生存游戏** → 再把 Core 接进 Unity Vertical Slice
+- 用户当前实习无法稳定用 Unity，先纯 C# 主线；Oddssey 与纯 C# 可穿插
 
-## 测试状态
-- P00：`dotnet test prototypes/P00_ProviderProbe/P00.slnx` → 13/13 通过（含 null 值检查练习）。
-- P01：进行中，骨架与事件表测试待落盘。
+## 教学方式（用户明确约定）
+- **Track A 代码**：用户前期对代码无思路，**由 Agent 带跑大段 + 讲解**；用户有感觉后，关键设计点由用户先提结构、Agent 批评。Agent 管 boilerplate/重复实现/测试辅助/重构/解释；用户必须真懂 Domain Model/系统边界/invariant/算法/为什么用/不用某架构
+- **Track B 理论**：工程问题→基础理论→论文→返回工程，不读脱离工程的论文；每个理论必答 8 问（见 ROADMAP）
+- Evaluation 贯穿：机制都有 Baseline + 指标（Success Rate/Survival Time/Invalid Action Rate/Replan Count 等），禁止"看起来更聪明了"
+- 用户是"手记型"：学完一块手记发我，整理进 Notion（手记底稿 + 补缺漏，不要概括）
+- 讲解规范：直白、逐行、先结构后内容、少比喻；用户说看不懂就换更直白的说法重讲
 
-## 后续可延展方向（学习路线备忘，2026-08-13 记录）
-AI 原生游戏六大架构主题：①通信层（P00✅）②决策层（P01 进行中）③记忆层（记忆流/反思/检索）④动作层（工具调用/技能库）⑤知识层（RAG）⑥人格层（角色一致性）。
-真实案例参考：Generative Agents（斯坦福，NPC 感知→记忆→反思→规划循环）、AI Dungeon（LLM 当 DM/世界模拟器）、Voyager（LLM 规划 + 代码技能库）、Inworld/Convai（SDK + 云端 NPC 大脑）。
-共性骨架：大脑(LLM)→记忆/状态→工具/动作→控制/校验（P00/P01 学的正是控制与决策格）。候选源码：Voyager、Chop-Chop（Phase A 待审计）。
+## 留档纪律（新，写入了 CLAUDE.md）
+每完成一个小阶段（原型/重大设计决策/教学里程碑）立即更新 HANDOFF/STATUS/PROTOTYPE_INDEX/DECISIONS，确保换 Agent 无缝。
+
+## 工作区和环境
+- E:\Unity-AIProjects，main 分支，与 origin/main 同步（925bd0c）
+- git 直连 GitHub 不稳：push/clone 用 `git -c http.proxy=http://127.0.0.1:7897 ...`
+- NuGet：dotnet restore/test 前设 `$env:HTTPS_PROXY`；dotnet 10.0.200；无 Unity 编辑器
+- Notion：MCP 常断，用 API 直连（token 在 C:\Users\35706\.config\opencode\notion-token.txt；走代理 127.0.0.1:7897）
+- 勿用 PowerShell Set-Content 改写带中文的源文件（破坏 UTF-8），用编辑器工具
 
 ## 已知问题
-- 勿用 PowerShell 的 Set-Content/Get-Content 改写带中文的源文件（会破坏 UTF-8 编码），用编辑器工具。
-- Git Credential Manager 曾报"页文件太小"崩溃；走代理后 push 正常。
-- native llama 库为预编译 DLL，JSON schema→GBNF 转换在原生层，仓库内不可见。
+- Git Credential Manager 曾报"页文件太小"崩溃；走代理后正常
+- LLMUnity 原生库预编译，JSON schema→GBNF 在原生层不可见
 
 ## 不应重复的调查
-- 不再重新 clone LLMUnity、不重读整个仓库、不重写 P00 核心逻辑（除非 REVIEW 要求调整接口形状）。
+- 不再重做 P00-P03 的架构讨论（除非明确需要）
+- 不再把路线理解为"横向补 Agent 技能"——以游戏模拟为主干
+- 不再讨论"要不要先学 Unity"——已定：Oddssey 后单开项目（见 ROADMAP）
 
 ## 下一步第一项动作
-1. 主控台 REVIEW P00：接口形状（IGameAIProvider 是否够用）、JsonOutputValidator 语义（重试次数/兜底策略/取消）、测试覆盖是否满足退出条件。
-2. REVIEW 通过后：TASK-0002 关闭 → P00 进 Unity 工程（需 Unity 编辑器，可能切换到有 Unity 的机器）。
-3. 若 REVIEW 要求改动：以新 BUILDER/REVIEW 任务形式下达，不直接扩大范围。
+1. 检查/修改 P04 第一版（已知问题：SurvivalSystem 低温事件每 tick 重复触发；CommandValidator 的 Move 检查恒 true；缺 Deterministic RNG / Replay / Evaluation metrics / ActionSystem）
+2. 改好后带用户逐文件学 P04

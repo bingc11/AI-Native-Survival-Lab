@@ -1,31 +1,32 @@
 # STATUS.md
 
 ## 当前阶段
-Phase A：Source Audit and Disposable Probes
+P04 World Simulation Core（Headless 生存模拟），v1 骨架已落盘，检查修改中。
 
 ## 当前唯一主线
-TASK-0002 实现完成（P00 Provider Probe），等待 REVIEW。
+P04：检查并补全 World Simulation Core（Deterministic RNG / Replay / Evaluation / ActionSystem），然后带用户逐文件学习。
 
 ## 当前活动任务
-TASK-0002：BUILDER - P00 Provider Probe，验证 Unity 与模型运行时边界。
+P04 v1 已提交（925bd0c，7 测试绿）→ 已知问题修改 + 带学。
 
 ## 当前任务模式
-BUILDER（实现完成）→ 暂停，等主控台 REVIEW
+BUILDER（v1 骨架）→ 修改 + TEACHING（带用户学 P04）
 
 ## 最近通过验证的 Commit
-本仓库：4bb6c20（TASK-0002 P00 实现，dotnet test 12/12 绿）
-被审计源：LLMUnity 2c30b44 / v3.0.3（../references/LLMUnity）
+本仓库：925bd0c（P04 v1，dotnet test 7/7 绿）
+历史：P00 13 绿 / P01 28 绿 / P02 10 绿 / P03 8 绿
 
 ## 当前阻塞
-- GitHub 直连不可达，git 操作需走本机代理 127.0.0.1:7897（未写入 git 持久配置，单次命令 -c http.proxy 注入）。
-- 本机无 Unity 编辑器：LLMUnityAdapter 只写代码形态不编译；在 Unity 内实际加载模型验证需 Unity 环境。
+- 本机无 Unity 编辑器（P04 只做纯 C# 形态，Unity 接入延后）
+- GitHub/NuGet 直连不稳，需走本机代理 127.0.0.1:7897
 
 ## 下一动作
-1. 主控台 REVIEW：审阅 prototypes/P00_ProviderProbe/（接口形状、校验/重试/兜底逻辑、取消语义、测试覆盖）。
-2. REVIEW 通过后，TASK-0002 关闭；P00 进入"Unity 工程加载模型"阶段（需 Unity 环境，另行安排）。
+1. 修 P04 已知问题（低温事件重复触发、Move 校验恒 true）+ 补缺失件（SeededRandom / Replay / Evaluation metrics / ActionSystem）
+2. dotnet test 跑绿 → 提交
+3. 带用户逐文件学 P04（WorldState → Clock → Command → Event → System → Runner）
 
 ## 当前明确不做的事项
-* 不立即实现 P00 原型代码。
-* 不在本期创建 Unity 工程。
-* 不克隆全部候选仓库。
-* 不创建大型框架或空壳文件。
+- 不实现 P05 GOAP / Multi-Agent（留边界不写代码）
+- 不实现 RAG / Semantic Interaction / Social Memory
+- 不现在建 Unity 工程（学完 Oddssey 后单开项目）
+- 不为 P04-P09 预造抽象框架
