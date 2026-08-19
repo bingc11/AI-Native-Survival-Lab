@@ -4,7 +4,9 @@
     {
         public static void Main()
         {
-            HeadlessRunner.Run(24); // 跑 24 tick（24 小时）
+            // Baseline 对照实验：无策略 vs 有策略，跑 100 tick
+            HeadlessRunner.Run(100, withStrategy: false, compact: true);
+            HeadlessRunner.Run(100, withStrategy: true, compact: true);
         }
     }
 }
