@@ -2,7 +2,7 @@
 用于新主控会话接续。最新更新：2026-08-13
 
 ## 当前目标
-P04 World Simulation Core（Headless 生存模拟）——已落第一版骨架（WorldState/Clock/Command/Event/SurvivalSystem，7 测试绿，commit 925bd0c），正在按新思路检查修改，然后带用户逐文件学习。
+P04 World Simulation Core（Headless 生存模拟）——v2 已落地（Command 闭环 + SeededRandom/Replay/Metrics，15 测试绿，commit bf45fa3），正在带用户逐文件学习（已讲到 SimulationClock/ISystem，下一步 Command 闭环/ActionSystem/v2 新文件）。
 
 ## 已完成（截至当前）
 - P00 通信层（13 测试绿）/ P01 决策层（28 绿）/ P02 记忆层（10 绿）/ P03 动作层（8 绿）
@@ -46,5 +46,5 @@ P04 World Simulation Core（Headless 生存模拟）——已落第一版骨架�
 - 不再讨论"要不要先学 Unity"——已定：Oddssey 后单开项目（见 ROADMAP）
 
 ## 下一步第一项动作
-1. 检查/修改 P04 第一版（已知问题：SurvivalSystem 低温事件每 tick 重复触发；CommandValidator 的 Move 检查恒 true；缺 Deterministic RNG / Replay / Evaluation metrics / ActionSystem）
-2. 改好后带用户逐文件学 P04
+1. 带用户学 P04 剩余部分：Command 闭环 / ActionSystem / v2 新文件（SeededRandom / Replay / Metrics）
+2. 用户理解后：P04 阶段收尾（用户手记 → 补进 Notion）→ 更新留档四件套
