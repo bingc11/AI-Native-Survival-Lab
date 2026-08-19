@@ -23,6 +23,12 @@ namespace P04.Core.State
             return _byLocation.TryGetValue(location, out var res) ? res : new Resources();
         }
 
+        /// <summary>地点是否存在（用于校验 Move 等命令）。</summary>
+        public bool Contains(string location)
+        {
+            return _byLocation.ContainsKey(location);
+        }
+
         public void Consume(string location, string resource, float amount)
         {
             if (!_byLocation.TryGetValue(location, out var res)) return;

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace P04.Core.Command
+namespace P04.Core.Commands
 {
     /// <summary>
     /// 玩家/AI 的意图（Command）。

@@ -1,6 +1,6 @@
 using P04.Core.Clock;
 using P04.Core.Event;
-using P04.Core.System;
+using P04.Core.Systems;
 using P04.Core.State;
 using Xunit;
 

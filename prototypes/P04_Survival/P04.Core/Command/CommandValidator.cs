@@ -1,6 +1,6 @@
 using P04.Core.State;
 
-namespace P04.Core.Command
+namespace P04.Core.Commands
 {
     /// <summary>
     /// 命令验证器：检查 Command 是否合法（条件满足）。
@@ -22,8 +22,8 @@ namespace P04.Core.Command
                     return world.Resources.Get(world.Player.Location).Wood >= command.Amount;
 
                 case "Move":
-                    // 目标地点必须有资源
-                    return world.Resources.Get(command.Target) != null;
+                    // 目标地点必须存在
+                    return !string.IsNullOrEmpty(command.Target) && world.Resources.Contains(command.Target);
 
                 default:
                     return true; // 未知命令默认允许（可扩展）

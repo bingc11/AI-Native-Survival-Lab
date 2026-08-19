@@ -37,5 +37,11 @@ namespace P04.Core.State
         {
             Health = Math.Max(0f, Health - amount);
         }
+
+        /// <summary>移动到目标地点（前提：地点存在，由 Validator 保证）。</summary>
+        public void Move(string location)
+        {
+            Location = location;
+        }
     }
 }
