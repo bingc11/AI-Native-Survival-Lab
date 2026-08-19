@@ -71,7 +71,18 @@ P09（只有玩法真正需要才进入）Knowledge / RAG
 ### Track B：理论 / 论文 / 深层知识
 - 模式：**工程问题 → 基础理论 → 论文/工业系统 → 返回工程**（不做与工程脱节的随机阅读）
 - 每个理论/论文必答 8 问：解决什么问题/为什么出现/核心思想/架构算法/怎么证明有效/局限/与当前实现的对应/是否应改变当前设计
-- 重点论文：AI Native Games: A Survey and Roadmap、Generative Agents、Project Sid、AIvilization、GOAP/F.E.A.R.、Game AI Pro、SIMA/ACE（视野）
+- **论文回流验证原则**：论文/理论回流工程若涉及重要设计变化，必须先加一步最小实验 / Baseline / Ablation 验证，不凭论文直接改设计
+
+#### 论文时间线（按阶段触发，不锁死）
+| 材料 | 第一次接触时机 | 后续 |
+|------|--------------|------|
+| AI Native Games: A Survey and Roadmap | 现在可快速通读一遍建"总地图"（不占 P04 主线） | P07 针对 Semantic Interaction 部分深读 |
+| AIvilization | **P05**：做生存规划/多 Agent/replanning 时按问题取相关部分 | - |
+| Project Sid | **P05**：遇到 Multi-Agent / parallel cognition / 不同时间尺度问题时读（不锁 P08） | P08 再深化 |
+| GOAP / F.E.A.R. | P05：GOAP 规划 | - |
+| Game AI Pro | P06：BT / Utility 章节 | - |
+| Generative Agents | P08：记忆/信念/关系 | - |
+| SIMA / ACE | 视野扩展，不深入 | - |
 
 ## Evaluation 思维（贯穿全程）
 
